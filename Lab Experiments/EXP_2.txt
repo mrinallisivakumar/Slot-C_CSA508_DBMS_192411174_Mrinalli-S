@@ -1,0 +1,169 @@
+EXPERIMENT 2
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| csa050             |
+| csa0508            |
+| dbms               |
+| exp1               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use exp1;
+Database changed
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| E_no      | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | varchar(10)  | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
+| hiredate  | date         | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> INSERT INTO employee
+    -> VALUES
+    -> (10,'abi','chennai','9876543289',10,'sales','s001',10000000,'2007-05-15'),
+    ->
+    -> (11,'james','mumbai','9876543290',20,'mech','m001',45000,'2004-10-30'),
+    -> (12,'rahul','delhi','9876543291',10,'sales','s002',38000,'2008-09-23'),
+    -> (13,'keerthi','vellore','9876545432',34,'bioinfo','b001',123456,'2007-10-30'),
+    -> (13,'keerthi','vellore','9876545432',34,'bioinfo','b001',123456,'2007-10-23');
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee;
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+
+| E_no | E_name  | E_address | E_ph_no    | dept_no | dept_name | job_id | salary   | hiredate   |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+
+|   10 | abi     | chennai   | 9876543289 |      10 | sales     | s001   | 10000000 | 2007-05-15 |
+|   11 | james   | mumbai    | 9876543290 |      20 | mech      | m001   |    45000 | 2004-10-30 |
+|   12 | rahul   | delhi     | 9876543291 |      10 | sales     | s002   |    38000 | 2008-09-23 |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-30 |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-23 |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where dept_no = 10;
++------+--------+-----------+------------+---------+-----------+--------+----------+------------+
+| E_no | E_name | E_address | E_ph_no    | dept_no | dept_name | job_id | salary   | hiredate   |
++------+--------+-----------+------------+---------+-----------+--------+----------+------------+
+|   10 | abi    | chennai   | 9876543289 |      10 | sales     | s001   | 10000000 | 2007-05-15 |
+|   12 | rahul  | delhi     | 9876543291 |      10 | sales     | s002   |    38000 | 2008-09-23 |
++------+--------+-----------+------------+---------+-----------+--------+----------+------------+
+2 rows in set (0.01 sec)
+
+mysql> update employee set E_address = 'nagpur' where E_no = 12;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+
+| E_no | E_name  | E_address | E_ph_no    | dept_no | dept_name | job_id | salary   | hiredate   |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+
+|   10 | abi     | chennai   | 9876543289 |      10 | sales     | s001   | 10000000 | 2007-05-15 |
+|   11 | james   | mumbai    | 9876543290 |      20 | mech      | m001   |    45000 | 2004-10-30 |
+|   12 | rahul   | nagpur    | 9876543291 |      10 | sales     | s002   |    38000 | 2008-09-23 |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-30 |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-23 |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where dept_name = 'mech';
++------+--------+-----------+------------+---------+-----------+--------+--------+------------+
+| E_no | E_name | E_address | E_ph_no    | dept_no | dept_name | job_id | salary | hiredate   |
++------+--------+-----------+------------+---------+-----------+--------+--------+------------+
+|   11 | james  | mumbai    | 9876543290 |      20 | mech      | m001   |  45000 | 2004-10-30 |
++------+--------+-----------+------------+---------+-----------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table employee add email_id varchar(30);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| E_no      | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | varchar(10)  | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
+| hiredate  | date         | YES  |     | NULL    |       |
+| email_id  | varchar(30)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+10 rows in set (0.02 sec)
+
+mysql> update employee set email_id = 'abi@gmail.com' where E_no = 10;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set email_id = 'james@gmail.com' where E_no = 11;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set email_id = 'rahul@gmail.com' where E_no = 12;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set email_id = 'keerthi@gmail.com' where E_no = 13;
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql>  update employee set email_id = 'keerthi@gmail.com' where E_no = 14;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql>  select * from employee;
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+-------------------+
+| E_no | E_name  | E_address | E_ph_no    | dept_no | dept_name | job_id | salary   | hiredate   | email_id          |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+-------------------+
+|   10 | abi     | chennai   | 9876543289 |      10 | sales     | s001   | 10000000 | 2007-05-15 | abi@gmail.com     |
+|   11 | james   | mumbai    | 9876543290 |      20 | mech      | m001   |    45000 | 2004-10-30 | james@gmail.com   |
+|   12 | rahul   | nagpur    | 9876543291 |      10 | sales     | s002   |    38000 | 2008-09-23 | rahul@gmail.com   |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-30 | keerthi@gmail.com |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-23 | keerthi@gmail.com |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set email_id = NULL where E_name = 'james';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+-------------------+
+| E_no | E_name  | E_address | E_ph_no    | dept_no | dept_name | job_id | salary   | hiredate   | email_id          |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+-------------------+
+|   10 | abi     | chennai   | 9876543289 |      10 | sales     | s001   | 10000000 | 2007-05-15 | abi@gmail.com     |
+|   11 | james   | mumbai    | 9876543290 |      20 | mech      | m001   |    45000 | 2004-10-30 | NULL              |
+|   12 | rahul   | nagpur    | 9876543291 |      10 | sales     | s002   |    38000 | 2008-09-23 | rahul@gmail.com   |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-30 | keerthi@gmail.com |
+|   13 | keerthi | vellore   | 9876545432 |      34 | bioinfo   | b001   |   123456 | 2007-10-23 | keerthi@gmail.com |
++------+---------+-----------+------------+---------+-----------+--------+----------+------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where dept_name = 'sales';
++------+--------+-----------+------------+---------+-----------+--------+----------+------------+-----------------+
+| E_no | E_name | E_address | E_ph_no    | dept_no | dept_name | job_id | salary   | hiredate   | email_id        |
++------+--------+-----------+------------+---------+-----------+--------+----------+------------+-----------------+
+|   10 | abi    | chennai   | 9876543289 |      10 | sales     | s001   | 10000000 | 2007-05-15 | abi@gmail.com   |
+|   12 | rahul  | nagpur    | 9876543291 |      10 | sales     | s002   |    38000 | 2008-09-23 | rahul@gmail.com |
++------+--------+-----------+------------+---------+-----------+--------+----------+------------+-----------------+
+2 rows in set (0.00 sec)
+

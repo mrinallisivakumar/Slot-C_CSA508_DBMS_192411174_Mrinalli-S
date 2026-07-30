@@ -1,0 +1,118 @@
+EXPERIMENT 1
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| csa050             |
+| csa0508            |
+| dbms               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> create database exp1;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use exp1;
+Database changed
+mysql> create table employee (EMP_no int(5),E_name varchar(30),E_address varchar(100),E_ph_no varchar(50),dept_no int(40),dept_name varchar(30),job_id char(5),salary int(8));
+Query OK, 0 rows affected, 3 warnings (0.04 sec)
+
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| EMP_no    | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | char(5)      | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+mysql> alter table employee add hiredate date;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| EMP_no    | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | char(5)      | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
+| hiredate  | date         | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> alter table employee modify job_id varchar(5);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| EMP_no    | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | varchar(5)   | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
+| hiredate  | date         | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> alter table employee
+    -> rename column EMP_no to E_no;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| E_no      | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | varchar(5)   | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
+| hiredate  | date         | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> alter table employee modify job_id varchar(10);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| E_no      | int          | YES  |     | NULL    |       |
+| E_name    | varchar(30)  | YES  |     | NULL    |       |
+| E_address | varchar(100) | YES  |     | NULL    |       |
+| E_ph_no   | varchar(50)  | YES  |     | NULL    |       |
+| dept_no   | int          | YES  |     | NULL    |       |
+| dept_name | varchar(30)  | YES  |     | NULL    |       |
+| job_id    | varchar(10)  | YES  |     | NULL    |       |
+| salary    | int          | YES  |     | NULL    |       |
+| hiredate  | date         | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
